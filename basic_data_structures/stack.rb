@@ -28,7 +28,15 @@ class Stack
   end
 
   def peek
-    @collection[ @collection.size-1 ]
+    @collection[ size-1 ]
+  end
+
+  def is_empty?
+    @collection.empty?
+  end
+
+  def size
+    @collection.size
   end
 
 end
@@ -64,3 +72,19 @@ puts "Peak at the top item... #{stack.peek}"
 
 puts "Notice the top item was not removed when peeking..."
 p stack.collection
+
+puts "Check the size..."
+p stack.size
+
+puts "Is it empty?"
+p stack.is_empty?
+
+puts "Create an empty stack..."
+empty_stack = Stack.new
+p empty_stack.collection
+
+puts "Is it empty?"
+p empty_stack.is_empty?
+
+puts "Check the size..."
+p empty_stack.size
