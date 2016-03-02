@@ -71,6 +71,8 @@ class Converter
 
 end
 
+puts "Evaluating infix to postfix conversions..."
+
 infix_1 = "( A + B ) * ( C + D )"
 puts "Converting: #{infix_1}"
 infix_1_result = Converter.new(infix_1).infix_to_postfix
@@ -90,4 +92,56 @@ puts "Converting: #{infix_3}"
 infix_3_result = Converter.new(infix_3).infix_to_postfix
 puts infix_3_result
 puts "Success? #{"A B C * +" == infix_3_result}"
+puts
+
+class Evaluator
+
+  def initialize(math_expression)
+    @math_expression = math_expression
+  end
+
+  def calculate_postfix
+    operands = Stack.new
+    tokens = @math_expression.split(" ")
+
+    tokens.each do |token|
+      if is_number?(token)
+        operands.push Integer(token)
+      else
+        operand_2 = operands.pop
+        operand_1 = operands.pop
+        result = calculate_expression(token, operand_1, operand_2)
+        operands.push result
+      end
+    end
+
+    operands.pop
+  end
+
+  private
+
+  def calculate_expression(operator, operand_1, operand_2)
+    operand_1.send(operator, operand_2)
+  end
+
+  def is_number? string
+    true if Float(string) rescue false
+  end
+
+end
+
+puts "Evaluating postfix calculations..."
+
+postfix_expression = "7 8 + 3 2 + /"
+puts "Evaluating: #{postfix_expression}"
+postfix_expression_result = Evaluator.new(postfix_expression).calculate_postfix
+puts "Got: #{postfix_expression_result}"
+puts "Success? #{3 == postfix_expression_result}"
+puts
+
+postfix_expression = "17 10 + 3 * 9 /"
+puts "Evaluating: #{postfix_expression}"
+postfix_expression_result = Evaluator.new(postfix_expression).calculate_postfix
+puts "Got: #{postfix_expression_result}"
+puts "Success? #{9 == postfix_expression_result}"
 puts
