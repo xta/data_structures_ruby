@@ -1,6 +1,6 @@
 # Stack
 
-# A stack is a linear data structure. Linear data structures have are 2 dimensional, for example: top to bottom (or left to right).
+# A stack is a linear data structure. Linear data structures are 1 dimensional, for example: top to bottom (or left to right).
 
 # You can:
 # * push to add a new element to the top of the stack

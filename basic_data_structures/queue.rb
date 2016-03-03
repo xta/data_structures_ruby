@@ -1,6 +1,6 @@
 # Queue
 
-# A queue is a linear data structure. Linear data structures have are 2 dimensional, for example: top to bottom (or left to right).
+# A queue is a linear data structure. Linear data structures are 1 dimensional, for example: top to bottom (or left to right).
 
 # You can:
 # * enqueue to add a new item to the rear/back
