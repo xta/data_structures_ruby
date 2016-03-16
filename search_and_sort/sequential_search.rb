@@ -6,6 +6,8 @@
 # The average case (collection items are unordered) is the size of the collection divided by 2.
 # The worst case is determining the result (match or not) at the last compared item.
 
+# Sequential search is O(n).
+
 class SequentialSearch
 
   # note: purposely not using built in ruby methods such as #include?
