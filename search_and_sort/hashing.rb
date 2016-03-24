@@ -6,10 +6,7 @@
 # A hash table works by hashing the key to find its place in the hash.
 # That means that keys have to be hashable.
 
-class SimplisticHash
-
-  # SimplisticHash is a basic, naive hash implementation
-  # that uses a small number of hash slots and modulo
+module HashShared
 
   # note the key size is 11, a prime number
 
@@ -29,6 +26,14 @@ class SimplisticHash
     @collection[key]
   end
 
+end
+
+class SimplisticHash
+  include HashShared
+
+  # SimplisticHash is a basic, naive hash implementation
+  # that uses a small number of hash slots and modulo
+
   private
 
   def hasher(item)
@@ -38,26 +43,11 @@ class SimplisticHash
 end
 
 class FoldingHash
+  include HashShared
 
   # divide the item into equal sized pieces (last piece might not be the same size)
   # add the pieces together
   # divide by the number of slots
-
-  def initialize
-    keys = (0..10).to_a
-    @collection = keys.inject({}) {|hash, key| hash[key] = nil; hash}
-    @size = keys.size
-  end
-
-  def set(item)
-    key = hasher(item)
-    @collection[key] = item
-  end
-
-  def get(item)
-    key = hasher(item)
-    @collection[key]
-  end
 
   private
 
@@ -72,26 +62,11 @@ class FoldingHash
 end
 
 class MidSquareHash
+  include HashShared
 
   # square the item
   # extract the middle two digits
   # get the remainder using modulo
-
-  def initialize
-    keys = (0..10).to_a
-    @collection = keys.inject({}) {|hash, key| hash[key] = nil; hash}
-    @size = keys.size
-  end
-
-  def set(item)
-    key = hasher(item)
-    @collection[key] = item
-  end
-
-  def get(item)
-    key = hasher(item)
-    @collection[key]
-  end
 
   private
 
@@ -112,26 +87,11 @@ class MidSquareHash
 end
 
 class CharacterOrdinalHash
+  include HashShared
 
   # get the ordinal value of each string character
   # add the sum of the ordinal values
   # get the remainder using modulo
-
-  def initialize
-    keys = (0..10).to_a
-    @collection = keys.inject({}) {|hash, key| hash[key] = nil; hash}
-    @size = keys.size
-  end
-
-  def set(item)
-    key = hasher(item)
-    @collection[key] = item
-  end
-
-  def get(item)
-    key = hasher(item)
-    @collection[key]
-  end
 
   private
 
