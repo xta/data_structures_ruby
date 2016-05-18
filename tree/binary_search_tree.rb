@@ -9,6 +9,8 @@ require_relative './binary_tree.rb'
 
 class BinarySearchTree
 
+  attr_reader :root_node
+
   def initialize
     @root_node = nil
     @size = 0
@@ -206,6 +208,22 @@ class TreeNode
     @right_node = right_node
     @left_node.parent_node = self if has_left_child?
     @right_node.parent_node = self if has_right_child?
+  end
+
+  # balance methods
+
+  def height
+    if is_leaf?
+      0
+    else
+      [left_node, right_node].collect {|n| n.nil? ? 0 : n.height + 1 }.max
+    end
+  end
+
+  def balance_factor
+    left_height = left_node ? left_node.height : 0
+    right_height = right_node ? right_node.height : 0
+    left_height - right_height
   end
 
   # successor methods
