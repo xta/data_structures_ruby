@@ -57,5 +57,4 @@ puts " #{al.vertices}"
 
 puts "Traverse using breadth first search"
 
-al = AdjacencyList.new
 BreadthFirstSearch.traverse(al, start)
